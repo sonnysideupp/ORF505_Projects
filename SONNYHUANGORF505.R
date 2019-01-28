@@ -1,5 +1,9 @@
 load(paste("/Users/sonnyhuang/Desktop/","Jan2019FinalData.r",sep=""))
 
+#Using a parametric way to fit a distribution to the change of 
+#inventory of stocks in a given day
+
+##calculating the change of inventory of stock 1
 change1 = array(1:1500)
 for (i in 1:1500){
   change1[i] = INVENT_1[i+1] - INVENT_1[i]
@@ -7,22 +11,26 @@ for (i in 1:1500){
 }
 
 plot(change1)
-
+##calculating the change of inventory of stock 2
 change7 = array(1:921)
 for (i in 1:921){
   change7[i] = INVENT_7[i+1] - INVENT_7[i]
   
 }
-
+##calculating the change of inventory of stock 3
 change79 = array(1:1899)
 for (i in 1:1899){
   change79[i] = INVENT_79[i+1] - INVENT_79[i]
   
 }
-
+##checking the histogram of stock 1
 hist(change1)
+##plotting the quantiles of stock 1 against the quantiles of normal 
+##distribution using a qq plot. 
 qqnorm(change1)
 abline(0,1)
+
+##fitting a GPD to the upper and lower tails of the data for stock 1
 count = 0 
 for (i in 1:1500){
   if(change1[i] >= 0) {count = count + 1}
